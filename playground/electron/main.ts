@@ -70,6 +70,8 @@ async function createWindow() {
     win?.webContents.send('maximize-changed', false);
   });
 
+  // 开发者工具
+  // win.webContents.openDevTools();
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL);
   } else {
