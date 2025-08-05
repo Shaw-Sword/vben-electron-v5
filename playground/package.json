@@ -23,7 +23,8 @@
     "typecheck": "vue-tsc --noEmit --skipLibCheck",
     "test:e2e": "playwright test",
     "test:e2e-ui": "playwright test --ui",
-    "test:e2e-codegen": "playwright codegen"
+    "test:e2e-codegen": "playwright codegen",
+    "rebuild": "electron-rebuild -f -w better-sqlite3"
   },
   "main": "dist-electron/main/main.js",
   "debug": {
@@ -35,9 +36,11 @@
     "#/*": "./src/*"
   },
   "build": {
-    "productName": "VbenAdminPlayground",
-    "appId": "pro.vben.playground",
-    "copyright": "vben.pro © 2025",
+    "npmRebuild": true,
+    "buildDependenciesFromSource": true,
+    "productName": "zzapp_vben5",
+    "appId": "com.zhfz.shaw",
+    "copyright": "zhfz.shaw © 2025",
     "compression": "maximum",
     "artifactName": "${productName}-v${version}-${platform}-${arch}.${ext}",
     "asar": true,
@@ -49,7 +52,8 @@
       "dist-electron/**/*",
       "package.json",
       "!node_modules/**",
-      "!dist-electron/release/**"
+      "!dist-electron/release/**",
+      "node_modules/better-sqlite3/**"
     ],
     "nsis": {
       "oneClick": false,
@@ -58,7 +62,7 @@
       "deleteAppDataOnUninstall": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "VbenAdmin"
+      "shortcutName": "zzapp-vben5"
     },
     "win": {
       "icon": "./electron/logo/logo_256.ico",
@@ -90,7 +94,9 @@
     "@vben/utils": "workspace:*",
     "@vueuse/core": "catalog:",
     "ant-design-vue": "catalog:",
+    "better-sqlite3": "^12.2.0",
     "dayjs": "catalog:",
+    "fastify": "^5.4.0",
     "pinia": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:"

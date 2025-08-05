@@ -12,6 +12,9 @@ import {
   shell,
 } from 'electron';
 
+import { a } from './server';
+
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 process.env.APP_ROOT = path.join(__dirname, '../..');
@@ -38,6 +41,8 @@ let win: BrowserWindow | null = null;
 const preload = path.join(__dirname, '../preload/preload.mjs');
 const indexHtml = path.join(RENDERER_DIST, 'index.html');
 
+
+a();
 async function createWindow() {
   win = new BrowserWindow({
     autoHideMenuBar: true,
@@ -58,7 +63,7 @@ async function createWindow() {
 
   // 监听窗口准备好显示的事件
   win.once('ready-to-show', () => {
-    win?.maximize(); // 最大化窗口
+    // win?.maximize(); // 最大化窗口
     win?.show(); // 显示窗口
   });
 
@@ -143,6 +148,7 @@ app.on('activate', () => {
 
 // New window example arg: new windows url
 ipcMain.handle('open-win', (_, arg) => {
+
   const childWindow = new BrowserWindow({
     frame: false,
     webPreferences: {
